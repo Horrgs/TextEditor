@@ -3,6 +3,9 @@ package org.horrgs.texteditor.windows;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
 
 /**
  * Created by Horrgs on 2/13/2015.
@@ -12,8 +15,12 @@ public class TESave extends JFrame {
     JTextArea fileLocation;
     JTextField hintFileName;
     JTextField fileName;
+    JTextArea textEditor;
     Border bf = BorderFactory.createLineBorder(Color.BLACK);
-    public TESave() {
+    public JButton save;
+    public JButton cancel;
+    public TESave(JTextArea textEditor) {
+        this.textEditor = textEditor;
         setResizable(false);
         setSize(600, 400);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -53,5 +60,56 @@ public class TESave extends JFrame {
         setVisible(true);
         System.out.println(fileLocation.getPreferredSize());
         System.out.println(fileName.getPreferredSize());
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(0, 5, 5, 5);
+        save = new JButton("Save");
+        save.addActionListener(new TESaveListener());
+        add(save, gbc);
+        gbc.gridx = 1;
+        gbc.insets = new Insets(0, 0, 5, 5);
+        cancel = new JButton("Cancel");
+        cancel.addActionListener(new TESaveListener());
+        add(cancel, gbc);
+    }
+    
+    private class TESaveListener implements ActionListener {
+        
+        @Override
+        public void actionPerformed(ActionEvent ev) {
+            if(ev.getSource() == cancel) {
+                setVisible(false);
+            } else if(ev.getSource() == save) {
+                if(fileLocation.getText().toCharArray()[fileLocation.getText().length() - 1] != '/' || fileLocation.getText().toCharArray()[fileLocation.getText().length() - 1] != '\\') {
+                    fileLocation.setText(fileLocation.getText() + "\\");
+                }
+                for(int x = 0; x < fileName.getText().length(); x++) {
+                    char[] a = fileName.getText().toCharArray();
+                    if(a[x] == '.' || a[x] == ',') {
+                        fileName.getText().replace(a[x], ' ');
+                    }
+                }
+                File f = new File(fileLocation.getText() + fileName.getText() + ".txt");
+                if(f.getParentFile().exists()) {
+                    if(!f.exists()) {
+                        try {
+                            f.createNewFile();
+                            PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(f)));
+                            for(int x = 0; x < textEditor.getText().length(); x++) {
+                                char[] text = textEditor.getText().toCharArray();
+                                if(text[x] != '\n') {
+                                    writer.print(text[x]);
+                                    writer.flush();
+                                } else {
+                                    writer.println("");
+                                }
+                            }
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
     }
 }
