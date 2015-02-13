@@ -12,6 +12,12 @@ public class TEEditor extends JFrame {
     public JTextArea textEditorArea;
     public JButton saveButton;
     public JButton newButton;
+    
+    public TEEditor(boolean isNewWindow, JTextArea jTextArea) {
+        if(isNewWindow) setVisible(false);
+        jTextArea.setText("");
+    }
+    
     public TEEditor() {
         setSize(800, 726);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -49,7 +55,7 @@ public class TEEditor extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == saveButton) {
-                new TESave();
+                new TESave(textEditorArea);
             } else if(e.getSource() == newButton) {
                 new TENew(textEditorArea);
             }
