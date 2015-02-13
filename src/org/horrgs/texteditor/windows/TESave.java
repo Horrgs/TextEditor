@@ -54,8 +54,4 @@ public class TESave extends JFrame {
         System.out.println(fileLocation.getPreferredSize());
         System.out.println(fileName.getPreferredSize());
     }
-    
-    public void save() {
-        
-    }
 }
