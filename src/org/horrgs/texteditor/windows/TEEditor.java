@@ -50,6 +50,8 @@ public class TEEditor extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == saveButton) {
                 new TESave();
+            } else if(e.getSource() == newButton) {
+                new TENew(textEditorArea);
             }
         }
     }
