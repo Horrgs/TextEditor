@@ -83,12 +83,7 @@ public class TESave extends JFrame {
                 if(fileLocation.getText().toCharArray()[fileLocation.getText().length() - 1] != '/' || fileLocation.getText().toCharArray()[fileLocation.getText().length() - 1] != '\\') {
                     fileLocation.setText(fileLocation.getText() + "\\");
                 }
-                for(int x = 0; x < fileName.getText().length(); x++) {
-                    char[] a = fileName.getText().toCharArray();
-                    if(a[x] == '.' || a[x] == ',') {
-                        fileName.getText().replace(a[x], ' ');
-                    }
-                }
+
                 File f = new File(fileLocation.getText() + fileName.getText() + ".txt");
                 if(f.getParentFile().exists()) {
                     if(!f.exists()) {
