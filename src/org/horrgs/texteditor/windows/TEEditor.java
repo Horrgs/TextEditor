@@ -18,7 +18,7 @@ public class TEEditor extends JFrame {
         jTextArea.setText("");
     }
     
-    public TEEditor() {
+    public TEEditor(String text) {
         setSize(800, 726);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Text Editor v1.0 by Horrgs");
@@ -27,7 +27,7 @@ public class TEEditor extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(5, 5, 5, 5);
-        textEditorArea = new JTextArea();
+        textEditorArea = new JTextArea(text);
         textEditorArea.setLineWrap(true);
         textEditorArea.setWrapStyleWord(true);
         textEditorArea.setPreferredSize(new Dimension(600, 560));

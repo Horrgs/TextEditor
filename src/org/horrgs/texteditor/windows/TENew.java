@@ -57,7 +57,7 @@ public class TENew extends JFrame {
             } else if(ev.getSource() == newWindow) {
                 isNewWindow = true;
                 new TEEditor(isNewWindow(), textEditorArea);
-                new TEEditor();
+                new TEStart();
                 setVisible(false);
             }
         }
