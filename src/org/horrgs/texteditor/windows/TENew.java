@@ -19,6 +19,8 @@ public class TENew extends JFrame {
      * current editor.
      * @param textEditorArea this is the editor of the area.
      */
+    
+    //THIS WINDOW SEEMS A BIT MESSED UP.
     public TENew(JTextArea textEditorArea) {
         this.textEditorArea = textEditorArea;
         setSize(400, 200);
