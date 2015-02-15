@@ -1,11 +1,15 @@
 package org.horrgs.texteditor.windows;
 
+import org.horrgs.texteditor.TEH;
+
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
+import java.util.Scanner;
 
 /**
  * Created by Horrgs on 2/13/2015.
@@ -14,6 +18,7 @@ public class TEStart extends JFrame {
     public JButton openFile;
     public JButton newFile;
     public Color c = new Color(238, 238, 238);
+    private String text = "";
     public TEStart() {
         setSize(400, 800);
         setLayout(new GridBagLayout());
@@ -42,7 +47,19 @@ public class TEStart extends JFrame {
         gbc.gridy = 1;
         add(newFile, gbc);
         setVisible(true);
-        //FORGROUND: 51, 51, 51
+        //FOREGROUND: 51, 51, 51
+    }
+    
+    public void setText(String text) {
+        if(this.text != null) {
+            this.text = this.text + "\n" + text;
+        } else {
+            this.text = text;
+        }
+    }
+    
+    public String getText() {
+        return text;
     }
     
     private class DesignListener implements ActionListener {
@@ -56,6 +73,26 @@ public class TEStart extends JFrame {
                 openFile.setBorder(buttonBorder);
                 newFile.setForeground(c);
                 newFile.setBorder(resetBorder);
+                JFileChooser jfc = new JFileChooser("");
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("Text Files", "txt");
+                jfc.setFileFilter(filter);
+                int returnVal = jfc.showOpenDialog(openFile);
+                if(returnVal == JFileChooser.APPROVE_OPTION) {
+                    File f = jfc.getSelectedFile();
+                    //String ext = FilenameUtils.getExtension(jfc.getSelectedFile().getAbsolutePath().toString());
+                    //System.out.println("Opening: " + f.getName() + ".");
+                    try {
+                        Scanner reader = new Scanner(new FileReader(f));
+                        for(int x = 0; x < TEH.countLines(f.getAbsolutePath().toString()); x++) {
+                           setText(reader.nextLine());
+                        }
+                        new TEEditor(getText());
+                    } catch (FileNotFoundException ex) {
+                        ex.printStackTrace();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
             } else if(ev.getSource() == newFile) {
                 newFile.setForeground(foreground);
                 newFile.setBorder(buttonBorder);
@@ -65,6 +102,5 @@ public class TEStart extends JFrame {
                 new TEEditor(null);
             }
         }
-        
     }
 }
