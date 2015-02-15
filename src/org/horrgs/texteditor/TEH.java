@@ -1,11 +1,9 @@
 package org.horrgs.texteditor;
 
-import org.horrgs.texteditor.windows.TEStart;
+import org.horrgs.texteditor.windows.TEEditor;
+import org.horrgs.texteditor.windows.TENew;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 /**
  * Created by Horrgs on 2/13/2015.
@@ -16,8 +14,16 @@ public class TEH {
     This will provide flexibility amongst cross platforms.
      */
     public static void main(String[] args) {
-        new TEStart();
-        //new TEEditor(null);
+        //new TEStart();
+        new TEEditor(null, null);
+        File f = new File("C:\\Users\\Horrgs\\Desktop\\Programs\\MySQL.txt");
+        System.out.println("Absolute File " + f.getAbsoluteFile());
+        System.out.println("Absolute Path " + f.getAbsolutePath());
+        System.out.println("Parent " + f.getParent());
+        System.out.println("Parent File " + f.getParentFile());
+        System.out.println("Path " + f.getPath());
+        System.out.println("Name " + f.getName());
+        
     }
 
     /**
