@@ -18,8 +18,16 @@ public class TESave extends JFrame {
     JTextArea textEditor;
     Border bf = BorderFactory.createLineBorder(Color.BLACK);
     public JButton save;
+    //continueWithoutSaving is only used when they click "new" in TEEdtitor.
+    public JButton continueWithoutSaving;
     public JButton cancel;
-    public TESave(JTextArea textEditor) {
+    public boolean teStart;
+    public String aFp;
+    private JFrame jfR;
+    public TESave(JTextArea textEditor, boolean teStart, String aFp, boolean cWs, JFrame jfR) {
+        this.jfR = jfR;
+        this.aFp = aFp;
+        this.teStart = teStart;
         this.textEditor = textEditor;
         setResizable(false);
         setSize(600, 400);
@@ -37,7 +45,14 @@ public class TESave extends JFrame {
         add(hintFileLoc, gbc);
         gbc.gridx = 1;
         gbc.insets = new Insets(5, 0, 5, 5);
-        fileLocation = new JTextArea("");
+        if(aFp != null) {
+            File a = new File(aFp);
+            fileLocation = new JTextArea(a.getParent());
+            fileName = new JTextField(a.getName());
+        } else {
+            fileLocation = new JTextArea("");
+            fileName = new JTextField("");
+        }
         fileLocation.setBorder(bf);
         fileLocation.setPreferredSize(new Dimension(267, 18));
         fileLocation.setMinimumSize(new Dimension(267, 18));
@@ -52,14 +67,19 @@ public class TESave extends JFrame {
         add(hintFileName, gbc);
         gbc.gridx = 1;
         gbc.insets = new Insets(0, 0, 5, 5);
-        fileName = new JTextField("");
         fileName.setBorder(bf);
         fileName.setPreferredSize(new Dimension(75, 18));
         fileName.setPreferredSize(new Dimension(75, 18));
         add(fileName, gbc);
-        setVisible(true);
-        System.out.println(fileLocation.getPreferredSize());
-        System.out.println(fileName.getPreferredSize());
+        if(cWs) {
+            continueWithoutSaving = new JButton("Continue Without Saving");
+            gbc.weightx = 1;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            gbc.gridx = 0;
+            gbc.gridy = 4;
+            continueWithoutSaving.addActionListener(new TESaveListener());
+            add(continueWithoutSaving, gbc);
+        }
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.insets = new Insets(0, 5, 5, 5);
@@ -71,6 +91,7 @@ public class TESave extends JFrame {
         cancel = new JButton("Cancel");
         cancel.addActionListener(new TESaveListener());
         add(cancel, gbc);
+        setVisible(true);
     }
     
     private class TESaveListener implements ActionListener {
@@ -99,10 +120,17 @@ public class TESave extends JFrame {
                                     writer.println("");
                                 }
                             }
+                            if(teStart) new TEStart();
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
                     }
+                }
+            } else if(ev.getSource() == continueWithoutSaving) {
+                if(teStart) {
+                    jfR.setVisible(false);
+                    new TEStart();
+                    setVisible(false);
                 }
             }
         }
