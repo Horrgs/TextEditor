@@ -86,7 +86,7 @@ public class TEStart extends JFrame {
                         for(int x = 0; x < TEH.countLines(f.getAbsolutePath().toString()); x++) {
                            setText(reader.nextLine());
                         }
-                        new TEEditor(getText());
+                        new TEEditor(getText(), f.getAbsolutePath());
                     } catch (FileNotFoundException ex) {
                         ex.printStackTrace();
                     } catch (IOException ex) {
@@ -99,7 +99,7 @@ public class TEStart extends JFrame {
                 openFile.setForeground(c);
                 openFile.setBorder(resetBorder);
                 setVisible(false);
-                new TEEditor(null);
+                new TEEditor(null, null);
             }
         }
     }
