@@ -16,7 +16,7 @@ public class Prompt {
         jFrame = new JFrame("Prompt");
         jFrame.setLayout(new GridBagLayout());
         jFrame.setSize(400, 497);
-        jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        jFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;

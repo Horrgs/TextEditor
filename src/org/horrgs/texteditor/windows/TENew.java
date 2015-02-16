@@ -24,7 +24,7 @@ public class TENew extends JFrame {
     public TENew(JTextArea textEditorArea) {
         this.textEditorArea = textEditorArea;
         setSize(400, 200);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setLayout(new GridBagLayout());
         setResizable(false);
         GridBagConstraints gbc = new GridBagConstraints();
