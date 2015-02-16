@@ -25,11 +25,7 @@ public class TEEditor {
         if(isNewWindow) jFrame.setVisible(false);
         jTextArea.setText("");
     }
-    public TEEditor(boolean visible) {
-        jFrame.setVisible(visible);
-        jFrame.revalidate();
-        jFrame.repaint();
-    }
+
     /**
      * @param text This will be the text within the JTextArea. This is set when opening
      * a file. Leaving it null will leave the JTextArea empty.             
@@ -54,7 +50,6 @@ public class TEEditor {
         textEditorArea = new JTextArea(text);
         textEditorArea.setLineWrap(true);
         textEditorArea.setWrapStyleWord(true);
-        textEditorArea.setLineWrap(true);
         //textEditorArea.setPreferredSize(new Dimension(600, 560));
         //textEditorArea.setMinimumSize(new Dimension(600, 560));
         textEditorArea.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -92,7 +87,6 @@ public class TEEditor {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == saveButton) {
                 new TESave(textEditorArea, true, absoluteFilePath, true, jFrame);
-                new TENew(textEditorArea);
             } else if(e.getSource() == newButton) {
                 new TENew(textEditorArea);
             } else if(e.getSource() == openDoc) {
