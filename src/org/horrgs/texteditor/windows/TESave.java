@@ -24,6 +24,15 @@ public class TESave extends JFrame {
     public boolean teStart;
     public String aFp;
     private JFrame jfR;
+
+    /**
+     * @param textEditor Text being saved.
+     * @param teStart Used when continueWithoutSaving is clicked. Will open the TEStart GUI.
+     * @param aFp This is the absoluteFilePath. It sets the file location and file name. Editable.
+     * @param cWs Option to use closeWithoutSaving. Should only be used when "Open" is clicked in
+     *            in the TEEditor.*
+     * @param jfR Provides the JFrame of the TextEditor so it can be closed once it's done saving.
+     */
     public TESave(JTextArea textEditor, boolean teStart, String aFp, boolean cWs, JFrame jfR) {
         this.jfR = jfR;
         this.aFp = aFp;
@@ -124,6 +133,8 @@ public class TESave extends JFrame {
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
+                    } else {
+                        new Prompt("There is already a file with the name " + f.getName() + " in " + f.getParent());
                     }
                 }
             } else if(ev.getSource() == continueWithoutSaving) {
