@@ -22,7 +22,7 @@ public class TEStart extends JFrame {
     public TEStart() {
         setSize(400, 800);
         setLayout(new GridBagLayout());
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         setLayout(new GridBagLayout());
         openFile = new JButton();
@@ -87,6 +87,7 @@ public class TEStart extends JFrame {
                            setText(reader.nextLine());
                         }
                         new TEEditor(getText(), f.getAbsolutePath());
+                        setVisible(false);
                     } catch (FileNotFoundException ex) {
                         ex.printStackTrace();
                     } catch (IOException ex) {
