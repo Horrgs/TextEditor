@@ -37,7 +37,7 @@ public class TEEditor {
         this.absoluteFilePath = absoluteFilePath;
         jFrame.setSize(800, 726);
         jFrame.setPreferredSize(new Dimension(800, 726));
-        jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        jFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         jFrame.setTitle("Text Editor v1.0 by Horrgs");
         jFrame.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -50,12 +50,9 @@ public class TEEditor {
         textEditorArea = new JTextArea(text);
         textEditorArea.setLineWrap(true);
         textEditorArea.setWrapStyleWord(true);
-        //textEditorArea.setPreferredSize(new Dimension(600, 560));
-        //textEditorArea.setMinimumSize(new Dimension(600, 560));
         textEditorArea.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         scroll = new JScrollPane(textEditorArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         scroll.setPreferredSize(new Dimension(600, 560));
-        //add(textEditorArea, gbc);
         jFrame.add(scroll, gbc);
         saveButton = new JButton("Save");
         gbc.gridx = 0;
@@ -86,7 +83,7 @@ public class TEEditor {
         @Override
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == saveButton) {
-                new TESave(textEditorArea, true, absoluteFilePath, true, jFrame);
+                new TESave(textEditorArea, false, absoluteFilePath, true, jFrame);
             } else if(e.getSource() == newButton) {
                 new TENew(textEditorArea);
             } else if(e.getSource() == openDoc) {
