@@ -110,7 +110,8 @@ public class TESave extends JFrame {
             if(ev.getSource() == cancel) {
                 setVisible(false);
             } else if(ev.getSource() == save) {
-                if(fileLocation.getText().toCharArray()[fileLocation.getText().length() - 1] != '/' && fileLocation.getText().toCharArray()[fileLocation.getText().length() - 1] != '\\') {
+                String a = String.valueOf(fileLocation.getText().charAt(fileLocation.getText().length() - 1));
+                if(!a.equals("/") && !a.equals("\\")) {
                     fileLocation.setText(fileLocation.getText() + "\\");
                 }
                 File f;
