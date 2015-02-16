@@ -24,7 +24,7 @@ public class TESave extends JFrame {
     public boolean teStart;
     public String aFp;
     private JFrame jfR;
-
+    private File saveFile;
     /**
      * @param textEditor Text being saved.
      * @param teStart Used when continueWithoutSaving is clicked. Will open the TEStart GUI.
@@ -40,7 +40,7 @@ public class TESave extends JFrame {
         this.textEditor = textEditor;
         setResizable(false);
         setSize(600, 400);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Saving File...");
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -55,9 +55,9 @@ public class TESave extends JFrame {
         gbc.gridx = 1;
         gbc.insets = new Insets(5, 0, 5, 5);
         if(aFp != null) {
-            File a = new File(aFp);
-            fileLocation = new JTextArea(a.getParent());
-            fileName = new JTextField(a.getName());
+            saveFile = new File(aFp);
+            fileLocation = new JTextArea(saveFile.getParent());
+            fileName = new JTextField(saveFile.getName());
         } else {
             fileLocation = new JTextArea("");
             fileName = new JTextField("");
@@ -110,11 +110,15 @@ public class TESave extends JFrame {
             if(ev.getSource() == cancel) {
                 setVisible(false);
             } else if(ev.getSource() == save) {
-                if(fileLocation.getText().toCharArray()[fileLocation.getText().length() - 1] != '/' || fileLocation.getText().toCharArray()[fileLocation.getText().length() - 1] != '\\') {
+                if(fileLocation.getText().toCharArray()[fileLocation.getText().length() - 1] != '/' && fileLocation.getText().toCharArray()[fileLocation.getText().length() - 1] != '\\') {
                     fileLocation.setText(fileLocation.getText() + "\\");
                 }
-
-                File f = new File(fileLocation.getText() + fileName.getText() + ".txt");
+                File f;
+                if(saveFile == null) {
+                    f = new File(fileLocation.getText() + fileName.getText() + ".txt");
+                } else {
+                    f = saveFile;
+                }
                 if(f.getParentFile().exists()) {
                     if(!f.exists()) {
                         try {
