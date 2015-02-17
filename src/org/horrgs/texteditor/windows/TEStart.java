@@ -28,12 +28,11 @@ public class TEStart extends JFrame {
         setLayout(new GridBagLayout());
         openFile = new JButton();
         newFile = new JButton();
-        //openFile.setIcon(new ImageIcon("C:\\Users\\Horrgs\\Desktop\\Java\\imgs\\folder2.png"));
         try {
-
-            Image openImg = ImageIO.read(getClass().getResource("/resources/folder2.png"));
+            String fs = File.separator;
+            Image openImg = ImageIO.read(getClass().getResource(fs + "resources" + fs + "folder2.png"));
             openFile.setIcon(new ImageIcon(openImg));
-            Image newImg = ImageIO.read(getClass().getResource("/resources/new.png"));
+            Image newImg = ImageIO.read(getClass().getResource(fs + "resources" + fs +"new.png"));
             newFile.setIcon(new ImageIcon(newImg));
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -47,7 +46,6 @@ public class TEStart extends JFrame {
         gbc.gridy = 0;
         gbc.gridx = 0;
         add(openFile, gbc);
-        //newFile.setIcon(new ImageIcon("C:\\Users\\Horrgs\\Desktop\\Java\\imgs\\new.png"));
         newFile.setForeground(c);
         newFile.setBackground(c);
         newFile.addActionListener(new DesignListener());
@@ -57,7 +55,6 @@ public class TEStart extends JFrame {
         gbc.gridy = 1;
         add(newFile, gbc);
         setVisible(true);
-        //FOREGROUND: 51, 51, 51
     }
     
     public void setText(String text) {

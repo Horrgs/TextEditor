@@ -11,7 +11,7 @@ import java.io.*;
  */
 public class TEH {
     
-    /* TODO: Switch C: to File.listRoots()[0] and / to File.separator.
+    /* TODO: Switch C: to File.listRoots()[0]
     This will provide flexibility amongst cross platforms.
      */
     public static void main(String[] args) {

@@ -115,7 +115,7 @@ public class TESave {
             } else if(ev.getSource() == save) {
 
                 if(!fileLocation.getText().endsWith("/") && !fileLocation.getText().endsWith("\\")) {
-                    fileLocation.setText(fileLocation.getText() + "\\");
+                    fileLocation.setText(fileLocation.getText() + File.separator);
                 }
                 File f;
                 if(saveFile == null) {
