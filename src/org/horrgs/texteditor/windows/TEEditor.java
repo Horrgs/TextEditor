@@ -23,7 +23,7 @@ public class TEEditor {
      */
     public TEEditor(boolean isNewWindow, JTextArea jTextArea) {
         if(isNewWindow) jFrame.setVisible(false);
-        jTextArea.setText("");
+        else jTextArea.setText("");
     }
 
     /**
