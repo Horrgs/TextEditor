@@ -2,6 +2,7 @@ package org.horrgs.texteditor.windows;
 
 import org.horrgs.texteditor.TEH;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -26,7 +27,17 @@ public class TEStart extends JFrame {
         setResizable(false);
         setLayout(new GridBagLayout());
         openFile = new JButton();
-        openFile.setIcon(new ImageIcon("C:\\Users\\Horrgs\\Desktop\\Java\\imgs\\folder2.png"));
+        newFile = new JButton();
+        //openFile.setIcon(new ImageIcon("C:\\Users\\Horrgs\\Desktop\\Java\\imgs\\folder2.png"));
+        try {
+
+            Image openImg = ImageIO.read(getClass().getResource("/resources/folder2.png"));
+            openFile.setIcon(new ImageIcon(openImg));
+            Image newImg = ImageIO.read(getClass().getResource("/resources/new.png"));
+            newFile.setIcon(new ImageIcon(newImg));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         openFile.setForeground(c);
         openFile.setBackground(c);
         openFile.addActionListener(new DesignListener());
@@ -36,8 +47,7 @@ public class TEStart extends JFrame {
         gbc.gridy = 0;
         gbc.gridx = 0;
         add(openFile, gbc);
-        newFile = new JButton();
-        newFile.setIcon(new ImageIcon("C:\\Users\\Horrgs\\Desktop\\Java\\imgs\\new.png"));
+        //newFile.setIcon(new ImageIcon("C:\\Users\\Horrgs\\Desktop\\Java\\imgs\\new.png"));
         newFile.setForeground(c);
         newFile.setBackground(c);
         newFile.addActionListener(new DesignListener());
