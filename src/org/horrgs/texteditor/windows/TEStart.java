@@ -29,10 +29,11 @@ public class TEStart extends JFrame {
         openFile = new JButton();
         newFile = new JButton();
         try {
-            String fs = File.separator;
-            Image openImg = ImageIO.read(getClass().getResource(fs + "resources" + fs + "folder2.png"));
+            Image openImg = ImageIO.read(getClass().getResource("/resources/folder2.png"));
+            System.out.println(getClass().getResource("/resources/folder2.png").getPath());
+            System.out.println(getClass().getResource(File.separator + "resources" + File.separator + "folder2.png"));
             openFile.setIcon(new ImageIcon(openImg));
-            Image newImg = ImageIO.read(getClass().getResource(fs + "resources" + fs +"new.png"));
+            Image newImg = ImageIO.read(getClass().getResource("/resources/new.png"));
             newFile.setIcon(new ImageIcon(newImg));
         } catch (IOException ex) {
             ex.printStackTrace();
