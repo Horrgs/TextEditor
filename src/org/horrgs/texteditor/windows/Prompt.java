@@ -65,7 +65,6 @@ public class Prompt {
             } else if(ev.getSource() == overRide) {
                 if(file != null) {
                     if(file.exists()) {
-                        //TODO: THIS SHOULD BE DONE DIFFERENTLY, TEMP
                         file.delete();
                         try {
                             file.createNewFile();

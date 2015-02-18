@@ -22,8 +22,12 @@ public class TEEditor {
      * @param jTextArea
      */
     public TEEditor(boolean isNewWindow, JTextArea jTextArea) {
-        if(isNewWindow) jFrame.setVisible(false);
-        else jTextArea.setText("");
+        if(isNewWindow) {
+            jFrame.setVisible(false);
+        }else {
+            jTextArea.setText("");
+            absoluteFilePath = "";
+        }
     }
 
     /**

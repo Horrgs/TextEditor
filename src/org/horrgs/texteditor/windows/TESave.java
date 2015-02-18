@@ -26,7 +26,7 @@ public class TESave {
     public String aFp;
     private JFrame jfR;
     private File saveFile;
-    //TODO: If the file already exists, bring up prompt with the option to override it.
+    //TODO: Use JFileChooser to save a file, you can start in the directory it was opened in if it was an opened file.
     /**
      * @param textEditor Text being saved.
      * @param teStart Used when continueWithoutSaving is clicked. Will open the TEStart GUI.
@@ -103,7 +103,7 @@ public class TESave {
         cancel = new JButton("Cancel");
         cancel.addActionListener(new TESaveListener());
         jFrame.add(cancel, gbc);
-        jFrame.setVisible(true);
+        jFrame.setVisible(true);       
     }
     
     private class TESaveListener implements ActionListener {

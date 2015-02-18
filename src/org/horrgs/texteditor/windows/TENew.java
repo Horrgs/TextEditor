@@ -20,7 +20,6 @@ public class TENew extends JFrame {
      * @param textEditorArea this is the editor of the area.
      */
     
-    //TODO: When we open in the currentWindow, we need to set the absoluteFilePath of a previous opened file to null.
     public TENew(JTextArea textEditorArea) {
         this.textEditorArea = textEditorArea;
         setSize(400, 200);

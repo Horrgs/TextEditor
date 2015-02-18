@@ -1,7 +1,5 @@
 package org.horrgs.texteditor;
 
-import org.horrgs.texteditor.windows.TEEditor;
-import org.horrgs.texteditor.windows.TENew;
 import org.horrgs.texteditor.windows.TEStart;
 
 import java.io.*;
@@ -10,10 +8,7 @@ import java.io.*;
  * Created by Horrgs on 2/13/2015.
  */
 public class TEH {
-    
-    /* TODO: Switch C: to File.listRoots()[0]
-    This will provide flexibility amongst cross platforms.
-     */
+
     public static void main(String[] args) {
         new TEStart();
     }
