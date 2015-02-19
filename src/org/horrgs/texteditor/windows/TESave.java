@@ -91,16 +91,17 @@ public class TESave {
                 int r = jFileChooser.showSaveDialog(null);
                 if(r == JFileChooser.APPROVE_OPTION) {
                     try {
-                        PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(jFileChooser.getSelectedFile() + ".txt")));
+                        PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(jFileChooser.getSelectedFile())));
                         for(int x = 0; x < textEditor.getText().length(); x++) {
                             char[] text = textEditor.getText().toCharArray();
                             if(text[x] != '\n') {
-                                writer.println(text[x]);
-                                writer.flush();
+                                writer.print(text[x]);
                             } else {
-                                writer.print("");
+                                writer.print("\n");
                             }
                         }
+                        writer.flush();
+                        writer.close();
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
