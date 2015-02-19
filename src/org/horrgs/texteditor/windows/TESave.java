@@ -27,7 +27,7 @@ public class TESave {
     public String aFp;
     private JFrame jfR;
     private File saveFile;
-    //TODO: Use JFileChooser to save a file, you can start in the directory it was opened in if it was an opened file.
+    //TODO: File isn't saved if the file doesn't exist.
     /**
      * @param textEditor Text being saved.
      * @param teStart Used when continueWithoutSaving is clicked. Will open the TEStart GUI.
@@ -102,6 +102,8 @@ public class TESave {
                         }
                         writer.flush();
                         writer.close();
+                        jFrame.setVisible(false);
+                        if(teStart) new TEStart();
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
@@ -138,13 +140,13 @@ public class TESave {
                         Prompt p = new Prompt("There is already a file with the name " + f.getName() + " in " + f.getParent(), true, f, jFrame);
                         p.setText(textEditor.getText().toCharArray());
                     }
-                }
+                }  */
             } else if(ev.getSource() == continueWithoutSaving) {
                 if(teStart) {
                     jfR.setVisible(false);
                     new TEStart();
                     jFrame.setVisible(false);
-                }              */
+                }
             }
         }
     }
