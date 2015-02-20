@@ -36,3 +36,9 @@ Can I commit?
 ------------
 
 Will you commit?
+
+------------
+Can I redistribute, sell or edit your program?
+------------
+
+Read the license. 
