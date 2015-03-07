@@ -87,7 +87,7 @@ public class TEEditor {
         @Override
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == saveButton) {
-                new TESave(textEditorArea, false, absoluteFilePath, true, jFrame);
+                new TESave(textEditorArea, false, absoluteFilePath, false, jFrame);
             } else if(e.getSource() == newButton) {
                 new TENew(textEditorArea);
             } else if(e.getSource() == openDoc) {

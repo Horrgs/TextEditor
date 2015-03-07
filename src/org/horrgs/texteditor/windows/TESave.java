@@ -90,6 +90,9 @@ public class TESave {
                 }
                 int r = jFileChooser.showSaveDialog(null);
                 if(r == JFileChooser.APPROVE_OPTION) {
+                    if(!jFileChooser.getSelectedFile().getName().endsWith(".txt")) {
+                        jFileChooser.setSelectedFile(new File(jFileChooser.getSelectedFile() + ".txt"));
+                    }
                     try {
                         PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(jFileChooser.getSelectedFile())));
                         for(int x = 0; x < textEditor.getText().length(); x++) {
