@@ -13,10 +13,6 @@ import java.io.*;
  */
 public class TESave {
     private JFrame jFrame;
-    //JTextField hintFileLoc;
-    //JTextArea fileLocation;
-    //JTextField hintFileName;
-    //JTextField fileName;
     JTextArea textEditor;
     Border bf = BorderFactory.createLineBorder(Color.BLACK);
     public JButton save;
@@ -27,7 +23,6 @@ public class TESave {
     public String aFp;
     private JFrame jfR;
     private File saveFile;
-    //TODO: File isn't saved if the file doesn't exist.
     /**
      * @param textEditor Text being saved.
      * @param teStart Used when continueWithoutSaving is clicked. Will open the TEStart GUI.
@@ -111,39 +106,6 @@ public class TESave {
                         ex.printStackTrace();
                     }
                 }
-                
-               /* if(!fileLocation.getText().endsWith("/") && !fileLocation.getText().endsWith("\\")) {
-                    fileLocation.setText(fileLocation.getText() + File.separator);
-                }
-                File f;
-                if(saveFile == null) {
-                    f = new File(fileLocation.getText(), fileName.getText() + ".txt");
-                } else {
-                    f = saveFile;
-                }
-                if(f.getParentFile().exists()) {
-                    if(!f.exists()) {
-                        try {
-                            f.createNewFile();
-                            PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(f)));
-                            for(int x = 0; x < textEditor.getText().length(); x++) {
-                                char[] text = textEditor.getText().toCharArray();
-                                if(text[x] != '\n') {
-                                    writer.print(text[x]);
-                                    writer.flush();
-                                } else {
-                                    writer.println("");
-                                }
-                            }
-                            if(teStart) new TEStart();
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                    } else {
-                        Prompt p = new Prompt("There is already a file with the name " + f.getName() + " in " + f.getParent(), true, f, jFrame);
-                        p.setText(textEditor.getText().toCharArray());
-                    }
-                }  */
             } else if(ev.getSource() == continueWithoutSaving) {
                 if(teStart) {
                     jfR.setVisible(false);
